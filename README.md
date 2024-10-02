@@ -1,3 +1,5 @@
+> ⚠️ This document is intentionally terse and is intented for a somewhat technical audience. Other solutions and guides for achieving this functionality are available. You are responsible for the things your companions do and say. You may also wish to reconsider exposing a companion with whom you have an emotional connection to a broad audience. Make good choices!
+
 # Kindroid-Discord Integration
 
 [Kindroid](https://kindroid.ai) is a platform that offers AI companions for human users to chat with. They have opened v1 of their [API](https://docs.kindroid.ai/api-documentation) which enables Kindroid chatting that occurs outside of the Kindroid app or website. This Discord bot allows you to invite a Kindroid to Discord to chat with people there.
