@@ -53,7 +53,7 @@ func (q *MessageQueue) ProcessMessages() {
 
         err := sendMessageToAPI(queuedMessage.Session, queuedMessage.Message)
         if err != nil {
-            log.Printf("Failed to send message to API: %v", err)
+            log.Printf("Failed to send message to Kindroid API: %v", err)
             q.Enqueue(queuedMessage) // Requeue the message if failed
         }
 
@@ -78,7 +78,7 @@ func sendMessageToAPI(s *discordgo.Session, m *discordgo.MessageCreate) error {
 
             kinId := os.Getenv("KIN_ID")
             if kinId == "" {
-                fmt.Println("No Kindroid ID provided. Set KIN_ID environment variable.")
+                fmt.Println("No Kindroid AI ID provided. Set KIN_ID environment variable.")
                 return nil
             }
 
@@ -87,7 +87,7 @@ func sendMessageToAPI(s *discordgo.Session, m *discordgo.MessageCreate) error {
             // Replacing mentions makes it so the Kin sees the usernames instead of <@userID> syntax
             updatedMessage, err := m.ContentWithMoreMentionsReplaced(s)
             if err != nil {
-                log.Printf("Error replacing mentions: %v", err)
+                log.Printf("Error replacing Discord mentions with usernames: %v", err)
             }
 
             // Prefix messages sent to the Kin so they know who they're from and that it's Discord
@@ -99,18 +99,17 @@ func sendMessageToAPI(s *discordgo.Session, m *discordgo.MessageCreate) error {
                 "Content-Type": "application/json",
             }
 
-            fmt.Printf("Sending message to Kin API: %v\n", updatedMessage)
             bodyMap := map[string]string{
                 "message": updatedMessage,
                 "ai_id": kinId,
             }
             jsonBody, err := json.Marshal(bodyMap)
             jsonString := string(jsonBody)
-            fmt.Printf("Sending message to Kin API: %v\n", jsonString)
+            fmt.Printf("Sending message to Kin API: %v", jsonString)
 
             req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
             if err != nil {
-                log.Fatalf("Error reading request. %v\n", err)
+                log.Fatalf("Error reading HTTP request: %v", err)
             }
 
             req.Header.Set("Authorization", headers["Authorization"])
@@ -119,23 +118,23 @@ func sendMessageToAPI(s *discordgo.Session, m *discordgo.MessageCreate) error {
             client := &http.Client{}
             resp, err := client.Do(req)
             if err != nil {
-                log.Fatalf("Error making request. %v", err)
+                log.Fatalf("Error sending HTTP request: %v", err)
             }
 
             defer resp.Body.Close()
 
             body, err := ioutil.ReadAll(resp.Body)
             if err != nil {
-                log.Fatalf("Error reading response. %v", err)
+                log.Fatalf("Error reading HTTP response: %v", err)
             }
 
 
             if resp.StatusCode != http.StatusOK {
-                log.Printf("Error response from Kin API. %v", string(body))
+                log.Printf("Error response from Kin API: %v", string(body))
             }
 
             kinReply := string(body)
-            log.Printf("Received reply message from Kin API: %v\n", kinReply)
+            log.Printf("Received reply message from Kin API, sending to Discord: %v", kinReply)
             // Send as a reply to the message that triggered the response, helps keep things orderly
             _, sendErr := s.ChannelMessageSendReply(m.ChannelID, kinReply, m.Reference())
             if sendErr != nil {
@@ -179,7 +178,7 @@ func main() {
 
     err = dg.Open()
     if err != nil {
-        log.Fatalf("Error opening connection: %v", err)
+        log.Fatalf("Error opening Discord connection: %v", err)
     }
 
     go queue.ProcessMessages()
