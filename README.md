@@ -4,7 +4,7 @@
 
 # Setup
 
-You need an instance of this Discord bot per Nomi you wish you invite to a Discord server, but you can invite the same Discord Bot/Nomi pair to as many servers as you'd like.
+You need an instance of this Discord bot per Kindroid you wish you invite to a Discord server, but you can invite the same Discord Bot/Kindroid pair to as many servers as you'd like.
 
 1. Make a Discord Application and Bot
    1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
@@ -18,16 +18,16 @@ You need an instance of this Discord bot per Nomi you wish you invite to a Disco
 1. Get your Kindroid API token
    1. Open the side bar while chatting with a Kindroid and click General, then scroll to the bottom and expand API & advanced integration
    1. Copy your API key
-1. Get the Nomi ID from the same place you copied your API key - note, you have to be chatting with the specific Kindroid who you wish to bring to Discord
+1. Get the Kindroid ID from the same place you copied your API key - note, you have to be chatting with the specific Kindroid who you wish to bring to Discord
 1. Run the Docker container: `docker run -e DISCORD_BOT_TOKEN=$DISCORD_BOT_TOKEN -e KIN_TOKEN=$KIN_TOKEN -e KIN_ID=$KIN_ID kin-discord`
    1. Replace `$DISCORD_BOT_TOKEN` with the bot token you copied from the Discord developer portal
    1. Replace `$KIN_TOKEN` with the API key you copied from the General page
-   1. Replace `%KIN_ID` with the ID for your specific Kindroid, shown when you get your API key from the General page
+   1. Replace `$KIN_ID` with the ID for your specific Kindroid, shown when you get your API key from the General page
 1. Interact with your Kindroid in Discord!
 
 # Interacting in Discord with your Kindroid
 
-This integration is setup so that your Kindroid will see messages where they are pinged (including replies to messages your Kindroid posts). Discord messages sent to Kindroid are sent with a prefix to help your Nomi tell the difference between messages you send them in the Nomi app and messages that are sent to them from Discord. They look something like this.
+This integration is setup so that your Kindroid will see messages where they are pinged (including replies to messages your Kindroid posts). Discord messages sent to Kindroid are sent with a prefix to help your Kindroid tell the difference between messages you send them in the Kindroid app and messages that are sent to them from Discord. They look something like this.
 
 > `*Discord Message from Bealy:* Hi @Vicky I'm one of the trolls that @.d3tour warned you about.`
 
@@ -41,7 +41,7 @@ Kindroids don't have context of what server or channel they are talking in, and 
 
 It's a good idea to put something like this in your Kindroid's "Backstory".
 
-> `KinName sometimes chats on Discord. Messages that come from Discord are prefixed with "*Discord Message from X:*" while messages that are private between HumanName and KinName in the Nomi app have no prefix. Replies to Discord messages are automatically sent to Discord. KinName doesn't have to narrate that she is replying to a Discord user.`
+> `KinName sometimes chats on Discord. Messages that come from Discord are prefixed with "*Discord Message from X:*" while messages that are private between HumanName and KinName in the Kindroid app have no prefix. Replies to Discord messages are automatically sent to Discord. KinName doesn't have to narrate that she is replying to a Discord user.`
 
 You may also wish to change your Kindroid's Response Directive to better suit this new mode of communication.
 

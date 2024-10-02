@@ -84,7 +84,7 @@ func sendMessageToAPI(s *discordgo.Session, m *discordgo.MessageCreate) error {
 
             url := "https://api.kindroid.ai/v1/send-message"
 
-            // Replacing mentions makes it so the Nomi sees the usernames instead of <@userID> syntax
+            // Replacing mentions makes it so the Kin sees the usernames instead of <@userID> syntax
             updatedMessage, err := m.ContentWithMoreMentionsReplaced(s)
             if err != nil {
                 log.Printf("Error replacing mentions: %v", err)

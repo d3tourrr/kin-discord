@@ -1,4 +1,4 @@
-module github.com/d3tourrr/nomi-discord
+module github.com/d3tourrr/kin-discord
 
 go 1.18
 
