@@ -183,7 +183,21 @@ func main() {
         log.Fatalf("Error opening Discord connection: %v", err)
     }
 
-    dg.UpdateCustomStatus(version + " github.com/d3tourrr/kin-discord")
+    discordStatus := version + " github.com/d3tourrr/kin-discord"
+    err = dg.UpdateStatusComplex(discordgo.UpdateStatusData{
+        Status: "online",
+        Activities: []*discordgo.Activity{
+            {
+                Name: discordStatus,
+                Type: discordgo.ActivityTypeGame,
+            },
+        },
+    })
+    if err != nil {
+        log.Printf("Error setting status: %v", err)
+    } else {
+        log.Println("Status update successful")
+    }
 
     go queue.ProcessMessages()
 
