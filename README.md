@@ -54,3 +54,7 @@ It's a good idea to put something like this in your Kindroid's "Backstory".
 You may also wish to change your Kindroid's Response Directive to better suit this new mode of communication.
 
 It's also a good idea to add a journal entry that triggers on the word "Discord" or your Discord username to help your Kindroid understand that messages from your Discord username are from you, and others are from other people.
+
+---
+
+<small>I also made a nearly identical integration for Nomi.ai companions: [github.com/d3tourrr/nomi-discord](https://github.com/d3tourrr/nomi-discord)</small>
