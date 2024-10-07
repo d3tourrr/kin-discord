@@ -1,3 +1,8 @@
+# ⚠️⚠️⚠️ THIS INTEGRATION IS DEPRECATED
+# GO TO [GITHUB.COM/d3tourrr/NomiKin-Discord](https://github.com/NomiKin-Discord) FOR THE NEW VERSION. THIS REPO IS NO LONGER MAINTAINED
+# ⚠️⚠️⚠️ THIS INTEGRATION IS DEPRECATED
+
+~~
 # Kindroid-Discord Integration
 
 [Kindroid](https://kindroid.ai) is a platform that offers AI companions for human users to chat with. They have opened v1 of their [API](https://docs.kindroid.ai/api-documentation) which enables Kindroid chatting that occurs outside of the Kindroid app or website. This Discord bot allows you to invite a Kindroid to Discord to chat with people there.
@@ -58,3 +63,4 @@ It's also a good idea to add a journal entry that triggers on the word "Discord"
 ---
 
 <small>I also made a nearly identical integration for Nomi.ai companions: [github.com/d3tourrr/nomi-discord](https://github.com/d3tourrr/nomi-discord)</small>
+~~
